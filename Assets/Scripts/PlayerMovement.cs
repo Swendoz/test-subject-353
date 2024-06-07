@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed = 7;
     public float sprintSpeed = 10;
+    public bool canMove = true;
 
     public float groundDrag = 5;
 
@@ -70,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) return;
+
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
 
         GetInputs();
