@@ -51,5 +51,8 @@ public class LevelSystem : MonoBehaviour
         levelAnimator.SetTrigger("endLevel");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(levels[currentLevel - 1]);
+        levelScreens = GameObject.FindGameObjectWithTag("LevelScreens").GetComponent<LevelScreens>();
+        levelScreens.SetTexts(currentLevel);
+        levelAnimator = levelScreens.gameObject.GetComponent<Animator>();
     }
 }

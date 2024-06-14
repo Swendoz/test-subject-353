@@ -5,6 +5,7 @@ using static Unity.VisualScripting.Member;
 
 public class VoiceSystem : MonoBehaviour
 {
+    [SerializeField] private bool playOnAwake = false;
     [SerializeField] private AudioClip[] audioClips;
     [SerializeField] private int currentClip = 0;
     public bool isFinished = false;
@@ -13,8 +14,11 @@ public class VoiceSystem : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        StartCoroutine(PlaySound());
-        Debug.Log("Work");
+
+        if (playOnAwake)
+        {
+            StartCoroutine(PlaySound());
+        }
     }
 
     public IEnumerator PlaySound()  
@@ -28,6 +32,12 @@ public class VoiceSystem : MonoBehaviour
         Debug.Log("Finished");
     }
 
+    public void PlayClip(AudioClip clip) 
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     public void StopSound()
     {
         Debug.Log("Stopping");
@@ -38,6 +48,5 @@ public class VoiceSystem : MonoBehaviour
     { 
         currentClip++;
         PlaySound();
-
     }
 }

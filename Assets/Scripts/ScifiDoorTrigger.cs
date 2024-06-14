@@ -9,6 +9,7 @@ public class ScifiDoorTrigger : MonoBehaviour
     [SerializeField] private bool triggerClose = true;
     [SerializeField] private bool isWorked = false;
     [SerializeField] private BoxCollider blocker;
+    [SerializeField] private LevelController levelController = null;
 
     void Start()
     {
@@ -26,6 +27,12 @@ public class ScifiDoorTrigger : MonoBehaviour
                 blocker.isTrigger = false;
                 scifiDoor.ToggleDoor(!triggerClose);
                 isWorked = true;
+
+                if (levelController)
+                {
+                    Debug.Log("Level Controller GO");
+                    levelController.TriggerDetected();
+                }
             }
         }
     }
