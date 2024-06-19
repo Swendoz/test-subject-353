@@ -8,6 +8,7 @@ public class LevelController2 : LevelController
     [SerializeField] private VoiceSystem voiceSystem;
     [SerializeField] private QuestionManager _questionManager; // make it private
     [SerializeField] private AudioClip voiceForWaiting; // maybe more clips and make it array
+    [SerializeField] private AudioClip voiceStartQuestions;
     [SerializeField] private bool isVoiceWaitingDone = false;
     [SerializeField] private bool isTriggered = false;
     [SerializeField] private float waitTime = 5f;
@@ -45,5 +46,6 @@ public class LevelController2 : LevelController
     {
         isTriggered = true;
         _questionManager.GetQuestion();
+        voiceSystem.PlayClip(voiceStartQuestions);
     }
 }

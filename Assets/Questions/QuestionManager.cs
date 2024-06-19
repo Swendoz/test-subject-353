@@ -19,6 +19,9 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] private AudioClip correctSound;
     [SerializeField] private AudioClip wrongSound;
     [SerializeField] LevelController22 levelController;
+    [SerializeField] private AudioClip[] wrongClips;
+    [SerializeField] private AudioClip[] correctClips;
+    [SerializeField] private AudioSource voiceOver;
     private AudioSource audioSource;
 
     private void Awake()
@@ -26,7 +29,7 @@ public class QuestionManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
@@ -63,10 +66,21 @@ public class QuestionManager : MonoBehaviour
 
     public void CheckQuestion(bool isCorrect)
     {
+        int randomWill = Mathf.Min(Random.Range(0, 5));
+        bool willVoiceOver = randomWill > 3;
+        Debug.Log("Will Voice Over: " +  willVoiceOver);
+        Debug.Log("Random Will: " + randomWill);
+
         if (isCorrect)
         {
             Debug.Log("Yes good");
             audioSource.clip = correctSound;
+            if (willVoiceOver)
+            {
+                int randomVoice = Mathf.RoundToInt(Random.Range(0, correctClips.Length));
+                Debug.Log("Random Voice: " + randomVoice);
+                voiceOver.clip = correctClips[randomVoice];
+            }
             correctAnswers++;
             spotlightsManager.SetGreen();
             UpdateLights();
@@ -76,14 +90,26 @@ public class QuestionManager : MonoBehaviour
             audioSource.clip = wrongSound;
             spotlightsManager.SetRed();
             Debug.Log("Not good");
+            if (willVoiceOver)
+            {
+                
+                int randomVoice = Mathf.RoundToInt(Random.Range(0, wrongClips.Length));
+                Debug.Log("Random Voice: " + randomVoice);
+                voiceOver.clip = wrongClips[randomVoice];
+            }
             // Give red things
         }
 
         NextQuestion();
         audioSource.Play();
+        if (willVoiceOver)
+        {
+            voiceOver.Play();
+            Debug.Log("Played Voice Over");
+        }
     }
 
-    private void NextQuestion()
+        private void NextQuestion()
     {
         currentQuestion++;
         GetQuestion();

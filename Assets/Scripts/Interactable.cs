@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
         box,
         lever,
         button,
-        zart
+        skipButton
     }
 
     public void Interact()
@@ -37,6 +37,10 @@ public class Interactable : MonoBehaviour
             case Interacts.button:
                 Button button = gameObject.GetComponent<Button>();
                 button.ClickButton();
+                break;
+            case Interacts.skipButton:
+                SkipButton skipButton = gameObject.GetComponent<SkipButton>();
+                skipButton.ClickButton();
                 break;
             default:
                 Debug.Log("WTF WTF WTF WTF");

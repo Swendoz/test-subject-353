@@ -7,6 +7,9 @@ TagManager:
   - LevelScreens
   - Trigger
   - PlayerCollider
+  - Checkpoint
+  - ParkourDie
+  - MusicManager
   layers:
   - Default
   - TransparentFX

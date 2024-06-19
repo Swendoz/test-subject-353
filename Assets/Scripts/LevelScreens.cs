@@ -20,20 +20,22 @@ public class LevelScreens : MonoBehaviour
 
     public void SetTexts(int currentLevel)
     {
+        Debug.Log("Current Level is:" + currentLevel);
+
         switch (currentLevel)
         {
-            case 1:
+            case 3:
                 levelText.text = "Level 1";
                 titleText.text = "Basic Brain Functions";
                 break;
-            case 3:
+            case 5:
                 levelText.text = "Level 2";
                 titleText.text = "Movement Skills";
                 break;
-            case 4:
+            /*case 7:
                 levelText.text = "Level 3";
                 titleText.text = "Problem Solving Skills";
-                break;
+                break;*/
             default:
                 levelText.text = "";
                 titleText.text = "";

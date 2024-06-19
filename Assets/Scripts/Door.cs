@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
     [SerializeField] private AudioClip openDoor;
     [SerializeField] private AudioClip closeDoor;
     [SerializeField] private AudioClip lockedDoor;
+    private bool isOpened = false;
 
     private Animator animator;
     private Vector3 currentEulerAngle;
@@ -61,7 +62,11 @@ public class Door : MonoBehaviour
         }
         else
         {
+            // Delete it if you will add close functionality
+            if (isOpened) return;
+
             isOpen = !isOpen;
+            isOpened = true;
 
             animator.SetBool("isOpen", isOpen);
 

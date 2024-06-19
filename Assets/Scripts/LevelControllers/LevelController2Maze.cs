@@ -13,11 +13,15 @@ public class LevelController2Maze : LevelController
     [SerializeField] private float waitTime = 90f;
     [SerializeField] private float timer = 0; // make it private
     [SerializeField] private GameObject mazeCamera;
+    [SerializeField] private AudioClip mazeMusic;
+
+    private MusicManager musicManager;
 
 
     void Start()
     {
         timer = waitTime;
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
 
     private void Update()
@@ -50,6 +54,11 @@ public class LevelController2Maze : LevelController
             case "startMaze":
                 Debug.Log("Start Maze Triggerd");
                 isMazePlaying = true;
+                if (musicManager != null)
+                {
+                    musicManager.gameObject.GetComponent<AudioSource>().clip = mazeMusic;
+                    musicManager.StartFadeIn();
+                }
                 break;
             case "endMaze":
                 Debug.Log("End Maze Triggerd");

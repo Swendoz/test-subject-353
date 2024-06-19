@@ -46,12 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   levels:
+  - 0. Main Menu
   - 1.Lobby
   - 2.Level
   - 3.Lobby
   - 4.Level
-  - 5.Lobby
-  - 6.Level
-  - 7.Final
+  - 5.Final
   levelAnimator: {fileID: 0}
   levelScreens: {fileID: 0}
