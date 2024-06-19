@@ -23,6 +23,7 @@ public class Door : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         _levelSystem = LevelSystem.instance;
+        animator.SetBool("isOpen", isOpen);
 
         // go.transform.localRotation = Quaternion.Euler(100f, 100f, 100f);
 

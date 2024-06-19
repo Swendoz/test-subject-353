@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject settingsObject;
+    [SerializeField] private GameObject controlsObject;
 
     private void Start()
     {
@@ -21,5 +22,15 @@ public class MainMenuManager : MonoBehaviour
     public void OpenSettings()
     {
         settingsObject.SetActive(true);
+    }
+   
+    public void OpenControls()
+    {
+        controlsObject.SetActive(true);
+    }
+
+    public void CloseControls()
+    {
+        controlsObject.SetActive(false);
     }
 }
